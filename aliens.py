@@ -7,6 +7,8 @@ def run_game():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Aliens")
+    # Назначение цвета фона
+    bg_color = (230, 230, 230)
 
     # Запуск основного цикла игры
     while True:
@@ -14,7 +16,8 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-
+        # При каждом проходе цикла перерисовывается экран
+        screen.fill(bg_color)
         # Отображение последнего прорисованного экрана
         pygame.display.flip()
 
