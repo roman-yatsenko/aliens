@@ -11,8 +11,6 @@ def run_game():
     screen = pygame.display.set_mode(
         (game_settings.screen_width, game_settings.screen_height))
     pygame.display.set_caption("Aliens")
-    # Назначение цвета фона
-    bg_color = (230, 230, 230)
 
     # Запуск основного цикла игры
     while True:
