@@ -2,6 +2,8 @@ import sys
 
 import pygame
 
+from settings import Settings
+
 def run_game():
     # Инициализирует игру и создает объект экрана
     pygame.init()
