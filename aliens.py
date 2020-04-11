@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 def run_game():
     # Инициализирует игру и создает объект экрана
@@ -12,6 +13,9 @@ def run_game():
         (game_settings.screen_width, game_settings.screen_height))
     pygame.display.set_caption("Aliens")
 
+    # Создание корабля
+    ship = Ship(screen)
+
     # Запуск основного цикла игры
     while True:
         # Отслеживание событий клавиаутры и мыши
@@ -20,6 +24,7 @@ def run_game():
                 sys.exit()
         # При каждом проходе цикла перерисовывается экран
         screen.fill(game_settings.bg_color)
+        ship.blitme()
         # Отображение последнего прорисованного экрана
         pygame.display.flip()
 
