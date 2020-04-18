@@ -12,6 +12,8 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(game_settings, screen, ship, bullets)    
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 def fire_bullet(game_settings, screen, ship, bullets):
     """ Выпускает пулю, если максимум еще не достигнут"""
