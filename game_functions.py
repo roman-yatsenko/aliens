@@ -12,8 +12,9 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
         # Создание новой пули и включение ее в группу bullets
-        new_bullet = Bullet(game_settings, screen, ship)
-        bullets.add(new_bullet)
+        if len(bullets) < game_settings.bullets_allowed:
+            new_bullet = Bullet(game_settings, screen, ship)
+            bullets.add(new_bullet)
 
 def check_keyup_events(event, ship):
     """Реагирует на отпускание клавиш """
