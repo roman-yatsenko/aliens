@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
@@ -14,12 +15,16 @@ def run_game():
 
     # Создание корабля
     ship = Ship(game_settings, screen)
+    
+    # Создание группы для хранения пуль
+    bullets = Group()
 
     # Запуск основного цикла игры
     while True:
         # Отслеживание событий клавиаутры и мыши
         gf.check_events(ship)
         ship.update()
+        bullets.update()
         gf.update_screen(game_settings, screen, ship)
 
 run_game()
