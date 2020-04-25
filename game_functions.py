@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from bullet import Bullet
+from alien import Alien
 
 def check_keydown_events(event, game_settings, screen, ship, bullets):
     """Реагирует на нажатие клавиш"""
@@ -59,3 +60,22 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+def create_fleet(game_settings, screen, aliens):
+    """ Создает флот пришельцев"""
+    # Создание пришельца и вычисление количества пришельцев в ряду
+    # Интервал между соседними пришельцами равен одной ширине пришелшьца
+
+    alien = Alien(game_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = game_settings.screen_width - 2 * alien_width
+    number_alien_x = int(available_space_x / (2 * alien_width))
+
+    # Создание первого ряда пришельцев
+    for alien_number in range(number_alien_x):
+        # Создание пришельца и размещеение его в ряду
+        alien = Alien(game_settings, screen)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)
+        
