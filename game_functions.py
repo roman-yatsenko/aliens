@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 
 import pygame
 
@@ -128,5 +129,20 @@ def update_aliens(game_settings, ship, aliens):
 
     # Проверка коллизий "пришелец-корабль"
     if pygame.sprite.spritecollideany(ship, aliens):
-        print("Ship hit!!!")
+        ship_hit(game_settings, stats, screen, ship, aliens, bullets)
         
+def ship_hit(game_settings, stats, screen, ship, aliens, bullets):
+    """ Обрабатывает столкновение корабля с пришельцем"""
+    # Уменьшение ships_left
+    stats.ships_left -= 1
+
+    # Очистка спсика пришельцев и пуль
+    aliens.empty()
+    bullets.empty()
+
+    # Создание нового флота и размещение корабля в центре
+    create_fleet(game_settings, screen, ship, aliens)
+    ship.center_ship()
+
+    # Пауза
+    sleep(0.5)
