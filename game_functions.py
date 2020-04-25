@@ -84,6 +84,6 @@ def create_fleet(game_settings, screen, aliens):
     number_aliens_x = get_number_aliens_x(game_settings, alien.rect.width)
 
     # Создание первого ряда пришельцев
-    for alien_number in range(number_alien_x):
+    for alien_number in range(number_aliens_x):
         # Создание пришельца и размещеение его в ряду
         create_alien(game_settings, screen, aliens, alien_number)        
