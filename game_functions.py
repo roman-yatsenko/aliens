@@ -122,7 +122,7 @@ def change_fleet_direction(game_settings, aliens):
         alien.rect.y += game_settings.fleet_drop_speed
     game_settings.fleet_direction *= -1
 
-def update_aliens(game_settings, ship, aliens):
+def update_aliens(game_settings, stats, screen, ship, aliens, bullets):
     """ Обновляет позиции всех пришельцев во флоте"""
     check_fleet_edges(game_settings, aliens)
     aliens.update()
