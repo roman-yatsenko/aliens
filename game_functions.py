@@ -61,21 +61,29 @@ def update_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
+def get_number_aliens_x(game_settings, alien_width):
+    """ Вычисляет количество пришельцев в ряду"""
+    available_space_x = game_settings.screen_width - 2 * alien_width
+    number_alien_x = int(available_space_x / (2 * alien_width))
+    return number_alien_x
+
+def create_alien(game_settings, screen, aliens, alien_number):
+    """ Создает пришельца и размещает его в ряду"""
+    alien = Alien(game_settings, screen)
+    alien_width = alien.rect.width
+    alien.x = alien_width + 2 * alien_width * alien_number
+    alien.rect.x = alien.x
+    aliens.add(alien)
+
 def create_fleet(game_settings, screen, aliens):
     """ Создает флот пришельцев"""
     # Создание пришельца и вычисление количества пришельцев в ряду
     # Интервал между соседними пришельцами равен одной ширине пришелшьца
 
     alien = Alien(game_settings, screen)
-    alien_width = alien.rect.width
-    available_space_x = game_settings.screen_width - 2 * alien_width
-    number_alien_x = int(available_space_x / (2 * alien_width))
+    number_aliens_x = get_number_aliens_x(game_settings, alien.rect.width)
 
     # Создание первого ряда пришельцев
     for alien_number in range(number_alien_x):
         # Создание пришельца и размещеение его в ряду
-        alien = Alien(game_settings, screen)
-        alien.x = alien_width + 2 * alien_width * alien_number
-        alien.rect.x = alien.x
-        aliens.add(alien)
-        
+        create_alien(game_settings, screen, aliens, alien_number)        
