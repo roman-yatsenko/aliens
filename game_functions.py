@@ -100,7 +100,7 @@ def create_fleet(game_settings, screen, ship, aliens):
 def check_fleet_edges(game_settings, aliens):
     """ Реагирует на достижение флотом края экрана"""
     for alien in aliens.sprites():
-        if alien.check.edges():
+        if alien.check_edges():
             change_fleet_direction(game_settings, aliens)
             break
 
