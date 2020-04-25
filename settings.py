@@ -17,3 +17,6 @@ class Settings():
         self.bullets_allowed = 3
         # Настройки пришельцев
         self.alien_speed_factor = 1
+        self.fleet_drop_speed = 10
+        # 1 - вправо, -1 - влево
+        self.fleet_direction = 1
