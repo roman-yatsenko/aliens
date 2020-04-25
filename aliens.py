@@ -30,7 +30,7 @@ def run_game():
         # Отслеживание событий клавиаутры и мыши
         gf.check_events(game_settings, screen, ship, bullets)
         ship.update()
-        gf.update_bullets(bullets)
+        gf.update_bullets(aliens, bullets)
         gf.update_aliens(game_settings, aliens)
         gf.update_screen(game_settings, screen, ship, aliens, bullets)
 
