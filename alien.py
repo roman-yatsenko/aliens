@@ -23,4 +23,4 @@ class Alien(Sprite):
 
     def blitme(self):
         """ Выводит пришельца в текущем положении"""
-        self.screen.blit(self.image, self, rect)
+        self.screen.blit(self.image, self.rect)
