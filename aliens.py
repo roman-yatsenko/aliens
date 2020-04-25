@@ -24,13 +24,13 @@ def run_game():
 
     # Создание флота пришельцев
     gf.create_fleet(game_settings, screen, aliens)
-    
+
     # Запуск основного цикла игры
     while True:
         # Отслеживание событий клавиаутры и мыши
         gf.check_events(game_settings, screen, ship, bullets)
         ship.update()
         gf.update_bullets(bullets)
-        gf.update_screen(game_settings, screen, ship, alien, bullets)
+        gf.update_screen(game_settings, screen, ship, aliens, bullets)
 
 run_game()
