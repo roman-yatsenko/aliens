@@ -112,5 +112,5 @@ def change_fleet_direction(game_settings, aliens):
 
 def update_aliens(aliens):
     """ Обновляет позиции всех пришельцев во флоте"""
-    check_fleet_edges(game_settings=, aliens)
+    check_fleet_edges(game_settings, aliens)
     aliens.update()
