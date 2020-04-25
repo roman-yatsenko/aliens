@@ -82,7 +82,7 @@ def create_alien(game_settings, screen, aliens, alien_number, row_number):
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
 
-def create_fleet(game_settings, screen, aliens):
+def create_fleet(game_settings, screen, ship, aliens):
     """ Создает флот пришельцев"""
     # Создание пришельца и вычисление количества пришельцев в ряду
     # Интервал между соседними пришельцами равен одной ширине пришелшьца
@@ -95,4 +95,4 @@ def create_fleet(game_settings, screen, aliens):
     for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
             # Создание пришельца и размещеение его в ряду
-            create_alien(game_settings, screen, aliens, alien_number)        
+            create_alien(game_settings, screen, aliens, alien_number, row_number)        

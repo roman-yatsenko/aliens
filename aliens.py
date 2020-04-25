@@ -23,7 +23,7 @@ def run_game():
     aliens = Group()
 
     # Создание флота пришельцев
-    gf.create_fleet(game_settings, screen, aliens)
+    gf.create_fleet(game_settings, screen, ship, aliens)
 
     # Запуск основного цикла игры
     while True:
