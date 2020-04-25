@@ -97,7 +97,20 @@ def create_fleet(game_settings, screen, ship, aliens):
             # Создание пришельца и размещеение его в ряду
             create_alien(game_settings, screen, aliens, alien_number, row_number)        
 
+def check_fleet_edges(game_settings, aliens):
+    """ Реагирует на достижение флотом края экрана"""
+    for alien in aliens.sprites():
+        if alien.check.edges():
+            change_fleet_direction(game_settings, aliens)
+            break
+
+def change_fleet_direction(game_settings, aliens):
+    """ Опускает фесь флот и меняет направление флота"""
+    for alien in aliens.sprites():
+        alien.rect.y += game_settings.fleet_drop_speed
+    game_settings.fleet_direction *= -1
+
 def update_aliens(aliens):
     """ Обновляет позиции всех пришельцев во флоте"""
+    check_fleet_edges(game_settings=, aliens)
     aliens.update()
-    
