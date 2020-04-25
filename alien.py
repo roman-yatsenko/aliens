@@ -6,7 +6,7 @@ class Alien(Sprite):
 
     def __init__(self, game_settings, screen):
         """ Инициализтрйет пришельца и задает его начальную позицию"""
-        super().init()
+        super().__init__()
         self.screen = screen
         self.game_settings = game_settings
 
