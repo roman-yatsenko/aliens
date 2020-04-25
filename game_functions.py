@@ -125,3 +125,8 @@ def update_aliens(game_settings, aliens):
     """ Обновляет позиции всех пришельцев во флоте"""
     check_fleet_edges(game_settings, aliens)
     aliens.update()
+
+    # Проверка коллизий "пришелец-корабль"
+    if pygame.sprite.spritecollideany(ship, aliens):
+        print("Ship hit!!!")
+        
