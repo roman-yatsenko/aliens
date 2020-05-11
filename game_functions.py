@@ -145,16 +145,21 @@ def update_aliens(game_settings, stats, screen, ship, aliens, bullets):
 
 def ship_hit(game_settings, stats, screen, ship, aliens, bullets):
     """ Обрабатывает столкновение корабля с пришельцем"""
-    # Уменьшение ships_left
-    stats.ships_left -= 1
+    if stats.ships_left > 0:
+        # Уменьшение ships_left
+        stats.ships_left -= 1
 
-    # Очистка спсика пришельцев и пуль
-    aliens.empty()
-    bullets.empty()
+        # Очистка спсика пришельцев и пуль
+        aliens.empty()
+        bullets.empty()
 
-    # Создание нового флота и размещение корабля в центре
-    create_fleet(game_settings, screen, ship, aliens)
-    ship.center_ship()
+        # Создание нового флота и размещение корабля в центре
+        create_fleet(game_settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # Пауза
-    sleep(0.5)
+        # Пауза
+        sleep(0.5)
+
+    else:
+        stats.game_active = False
+        
