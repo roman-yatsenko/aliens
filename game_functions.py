@@ -31,7 +31,7 @@ def check_keyup_events(event, ship):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
 
-def check_events(game_settings, screen, stats, play_button, ship, bullets):
+def check_events(game_settings, screen, stats, play_button, ship, aliens, bullets):
     """Обрабатывает нажатия клавиш и события мыши"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
