@@ -8,4 +8,10 @@ class Scoreboard():
         self.screen_rect = screen.get_rect()
         self.game_settings = game_settings
         self.stats = stats
-        
+
+        # Настройки шрифта для вывода счета
+        self.text_color = (30, 30, 30)
+        self.font = pygame.font.SysFont(None, 48)
+
+        # Подготовка исходного изображения
+        self.prep_score()
