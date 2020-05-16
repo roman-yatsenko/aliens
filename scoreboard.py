@@ -18,7 +18,8 @@ class Scoreboard():
 
     def prep_score(self):
         """Преобразует текущий счет в графическое изображение"""
-        score_str = str(self.stats.score)
+        rounded_score = int(round(self.stats.score, -1))
+        score_str = "{:,}".format(rounded_score)
         self.score_image = self.font.render(score_str, True, self.text_color, 
             self.game_settings.bg_color)
 
@@ -30,4 +31,3 @@ class Scoreboard():
     def show_score(self):
         """ Выводит счет на экран"""
         self.screen.blit(self.score_image, self.score_rect)
-        
