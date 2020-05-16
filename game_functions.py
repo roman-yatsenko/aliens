@@ -94,8 +94,9 @@ def check_bullet_alien_collisions(game_settings, screen, ship, aliens, bullets):
     # при обнаружении попадания удалить пулю и пришельца
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
     if len(aliens) == 0:
-        # Уничтожение существующих пуль и создание нового флота
+        # Уничтожение существующих пуль, повышение скорости и создание нового флота
         bullets.empty()
+        game_settings.increase_speed()
         create_fleet(game_settings, screen, ship, aliens)
 
 def get_number_aliens_x(game_settings, alien_width):
