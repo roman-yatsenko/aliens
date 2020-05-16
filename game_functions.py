@@ -2,7 +2,7 @@ import sys
 from time import sleep
 
 import pygame
-from pygame.sprite import Group
+# from pygame.sprite import Group
 
 from settings import Settings
 from game_stats import GameStats
@@ -18,15 +18,11 @@ screen = None
 play_button = None    
 sb = None
 ship = None
+bullets = None
+aliens = None
 
 # Создание экземпляра для хранения игровой статистики
 stats = GameStats(game_settings)
-
-# Создание группы для хранения пуль
-bullets = Group()
-
-# Создание пришельцев
-aliens = Group()
 
 def init_game():
     """ Инициализирует игру и создает объект экрана"""
@@ -46,6 +42,14 @@ def init_game():
     # Создание корабля
     global ship
     ship = Ship(game_settings, screen)
+
+    # Создание группы для хранения пуль
+    global bullets
+    bullets = pygame.sprite.Group()
+
+    # Создание пришельцев
+    global aliens
+    aliens = pygame.sprite.Group()
 
     # Создание флота пришельцев
     create_fleet()
@@ -82,9 +86,9 @@ def check_events():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events()
+            check_keydown_events(event)
         elif event.type == pygame.KEYUP:
-            check_keyup_events(event, ship)
+            check_keyup_events(event)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             check_play_button(mouse_x, mouse_y)
@@ -145,8 +149,8 @@ def check_bullet_alien_collisions():
     # при обнаружении попадания удалить пулю и пришельца
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
     if collisions:
-        for aliens in collisions.values():
-            stats.score += game_settings.alien_points * len(aliens)
+        for hit_aliens in collisions.values():
+            stats.score += game_settings.alien_points * len(hit_aliens)
         sb.prep_score()
     if len(aliens) == 0:
         # Уничтожение существующих пуль, повышение скорости и создание нового флота
