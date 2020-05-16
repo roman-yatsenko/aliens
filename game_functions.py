@@ -2,9 +2,44 @@ import sys
 from time import sleep
 
 import pygame
+from pygame.sprite import Group
 
+from settings import Settings
+from game_stats import GameStats
+from scoreboard import Scoreboard
+from button import Button
+from ship import Ship
 from bullet import Bullet
 from alien import Alien
+
+# Глобальные объекты
+screen = pygame.display.set_mode(
+    (game_settings.screen_width, game_settings.screen_height))
+game_settings = Settings()
+    
+# Создание кнопки Play
+play_button = Button(game_settings, screen, "Play")
+
+# Создание экземпляра для хранения игровой статистики
+stats = GameStats(game_settings)
+sb = Scoreboard(game_settings, screen, stats)
+
+# Создание корабля
+ship = Ship(game_settings, screen)
+
+# Создание группы для хранения пуль
+bullets = Group()
+
+# Создание пришельцев
+aliens = Group()
+
+def init_game():
+    """ Инициализирует игру и создает объект экрана"""
+    pygame.init()
+    pygame.display.set_caption("Aliens")
+
+    # Создание флота пришельцев
+    create_fleet(game_settings, screen, ship, aliens)
 
 def check_keydown_events(event, game_settings, screen, stats, ship, bullets):
     """Реагирует на нажатие клавиш"""
