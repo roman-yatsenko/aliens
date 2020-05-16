@@ -18,7 +18,7 @@ class Settings():
         self.bullets_allowed = 3
         
         # Настройки пришельцев
-        self.fleet_drop_speed = 50
+        self.fleet_drop_speed = 30
        
         # Темп ускорения игры
         self.speedup_scale = 1.1
@@ -36,7 +36,7 @@ class Settings():
 
         # Подсчет очков
         self.alien_points = 50
-        
+
     def increase_speed(self):
         """Увеличивает настройки скорости"""
         self.ship_speed_factor *= self.speedup_scale
