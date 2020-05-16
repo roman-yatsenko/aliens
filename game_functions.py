@@ -244,3 +244,10 @@ def ship_hit():
     else:
         stats.game_active = False
         pygame.mouse.set_visible(True)
+
+def update_game_objects():
+    """ Обновление игровых объектов"""
+    if stats.game_active:
+        ship.update()
+        update_bullets()
+        update_aliens()
