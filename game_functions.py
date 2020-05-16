@@ -6,15 +6,16 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
-def check_keydown_events(event, game_settings, screen, ship, bullets):
+def check_keydown_events(event, game_settings, screen, stats, ship, bullets):
     """Реагирует на нажатие клавиш"""
-    if event.key == pygame.K_RIGHT:
-        ship.moving_right = True
-    elif event.key == pygame.K_LEFT:
-        ship.moving_left = True
-    elif event.key == pygame.K_SPACE:
-        fire_bullet(game_settings, screen, ship, bullets)    
-    elif event.key == pygame.K_q:
+    if stats.game_active:
+        if event.key == pygame.K_RIGHT:
+            ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            ship.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            fire_bullet(game_settings, screen, ship, bullets)    
+    if event.key == pygame.K_q:
         sys.exit()
 
 def fire_bullet(game_settings, screen, ship, bullets):
@@ -37,7 +38,7 @@ def check_events(game_settings, screen, stats, sb, play_button, ship, aliens, bu
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, game_settings, screen, ship, bullets)
+            check_keydown_events(event, game_settings, screen, stats, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
