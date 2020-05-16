@@ -75,7 +75,7 @@ def update_screen(game_settings, screen, stats, sb, ship, aliens, bullets, play_
 
     # Вывод счета
     sb.show_score()
-    
+
     # Кнопка Play отображается в том случае, если игра неактивна
     if not stats.game_active:
         play_button.draw_button()
@@ -83,7 +83,7 @@ def update_screen(game_settings, screen, stats, sb, ship, aliens, bullets, play_
     # Отображение последнего прорисованного экрана
     pygame.display.flip()
 
-def update_bullets(game_settings, screen, ship, aliens, bullets):
+def update_bullets(game_settings, screen, stats, sb, ship, aliens, bullets):
     """ Обновляет позиции пуль и уничтожает старые пули"""
     bullets.update()
 
@@ -91,13 +91,16 @@ def update_bullets(game_settings, screen, ship, aliens, bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    check_bullet_alien_collisions(game_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(game_settings, screen, stats, sb, ship, aliens, bullets)
 
-def check_bullet_alien_collisions(game_settings, screen, ship, aliens, bullets):    
+def check_bullet_alien_collisions(game_settings, screen, stats, sb, ship, aliens, bullets):    
     """ Обработка коллизий пуль с пришельцами"""
     # Проверка попаданий в пришельцев
     # при обнаружении попадания удалить пулю и пришельца
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if collisions:
+        stats.score += game_settings.alien_points
+        sb.prep_score()
     if len(aliens) == 0:
         # Уничтожение существующих пуль, повышение скорости и создание нового флота
         bullets.empty()
