@@ -26,6 +26,8 @@ class GameStats():
 
     def load_high_score(self):
         """ Загружает рекорд из файла"""
-        self.high_score = 0
-        with open(HIGH_SCORE_FILENAME, 'r') as file:
-            self.high_score = int(file.read())
+        try:
+            with open(HIGH_SCORE_FILENAME, 'r') as file:
+                self.high_score = int(file.read())
+        except Exception:
+            self.high_score = 0
