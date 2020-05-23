@@ -85,6 +85,7 @@ def check_events():
     """Обрабатывает нажатия клавиш и события мыши"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            stats.save_high_score()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event)
