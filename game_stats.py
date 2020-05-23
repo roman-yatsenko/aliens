@@ -1,4 +1,3 @@
-HIGH_SCORE_FILENAME = 'high_score.dat'
 class GameStats():
     """ Отслеживание статистики для игры"""
 
@@ -18,8 +17,4 @@ class GameStats():
         self.ships_left = self.game_settings.ship_limit
         self.score = 0
         self.level = 1
-    
-    def save_high_score(self):
-        """ Сохраняет рекорд в файл"""
-        with open(HIGH_SCORE_FILENAME, 'w') as file:
-            file.write(str(self.high_score))
+        
