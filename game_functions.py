@@ -152,6 +152,7 @@ def check_bullet_alien_collisions():
         for hit_aliens in collisions.values():
             stats.score += game_settings.alien_points * len(hit_aliens)
         sb.prep_score()
+        check_high_score()
     if len(aliens) == 0:
         # Уничтожение существующих пуль, повышение скорости и создание нового флота
         bullets.empty()
@@ -255,3 +256,9 @@ def update_game_objects():
         ship.update()
         update_bullets()
         update_aliens()
+
+def check_high_score():
+    """проверяет, появился ли новый рекорд"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()
