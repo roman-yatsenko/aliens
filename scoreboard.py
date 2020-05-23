@@ -43,5 +43,5 @@ class Scoreboard():
 
         # Рекорд выравнивается по центру верхней стороны
         self.high_score_rect = self.high_score_image.get_rect()
-        self.high_score_rect.centerx = self.score_rect.centerx
+        self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
