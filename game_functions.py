@@ -64,6 +64,7 @@ def check_keydown_events(event):
         elif event.key == pygame.K_SPACE:
             fire_bullet()    
     if event.key == pygame.K_q:
+        stats.save_high_score()
         sys.exit()
 
 def fire_bullet():
@@ -240,7 +241,7 @@ def ship_hit():
         # Уменьшение ships_left
         stats.ships_left -= 1
         sb.prep_ships()
-        
+
         # Очистка спсика пришельцев и пуль
         aliens.empty()
         bullets.empty()
