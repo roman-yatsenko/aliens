@@ -64,6 +64,7 @@ def check_keydown_events(event):
         elif event.key == pygame.K_SPACE:
             fire_bullet()    
     if event.key == pygame.K_q:
+        stats.save_high_score()
         sys.exit()
 
 def fire_bullet():
@@ -84,6 +85,7 @@ def check_events():
     """Обрабатывает нажатия клавиш и события мыши"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            stats.save_high_score()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event)
@@ -240,7 +242,7 @@ def ship_hit():
         # Уменьшение ships_left
         stats.ships_left -= 1
         hud.prep_ships()
-        
+
         # Очистка спсика пришельцев и пуль
         aliens.empty()
         bullets.empty()
