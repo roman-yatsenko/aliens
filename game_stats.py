@@ -11,7 +11,7 @@ class GameStats():
         self.game_active = False
 
         # Рекорд не должен сбрасываться
-        self.high_score = 0
+        self.load_high_score()
         
     def reset_stats(self):
         """ Инициализирует статистику, изменяющуюся в ходе игры"""
@@ -23,3 +23,9 @@ class GameStats():
         """ Сохраняет рекорд в файл"""
         with open(HIGH_SCORE_FILENAME, 'w') as file:
             file.write(str(self.high_score))
+
+    def load_high_score(self):
+        """ Загружает рекорд из файла"""
+        self.high_score = 0
+        with open(HIGH_SCORE_FILENAME, 'r') as file:
+            self.high_score = int(file.read())
