@@ -6,7 +6,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
-from scoreboard import Scoreboard
+from hud import Hud
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -16,7 +16,7 @@ from alien import Alien
 game_settings = Settings()
 screen = None
 play_button = None    
-sb = None
+hud = None
 ship = None
 bullets = None
 aliens = None
@@ -36,8 +36,8 @@ def init_game():
     global play_button
     play_button = Button(game_settings, screen, "Play")
 
-    global sb
-    sb = Scoreboard(game_settings, screen, stats)
+    global hud
+    hud = Hud(game_settings, screen, stats)
 
     # Создание корабля
     global ship
@@ -105,9 +105,9 @@ def check_play_button(mouse_x, mouse_y):
         pygame.mouse.set_visible(False)
         # Сброс игровой статистики
         stats.reset_stats()
-        sb.prep_score()
-        sb.prep_level()
-        sb.prep_ships()
+        hud.prep_score()
+        hud.prep_level()
+        hud.prep_ships()
         stats.game_active = True
         # Очистка списков пришельцев и пуль
         aliens.empty()
@@ -128,7 +128,7 @@ def update_screen():
     aliens.draw(screen)
 
     # Вывод счета
-    sb.show_score()
+    hud.show_score()
 
     # Кнопка Play отображается в том случае, если игра неактивна
     if not stats.game_active:
@@ -155,14 +155,14 @@ def check_bullet_alien_collisions():
     if collisions:
         for hit_aliens in collisions.values():
             stats.score += game_settings.alien_points * len(hit_aliens)
-        sb.prep_score()
+        hud.prep_score()
         check_high_score()
     if len(aliens) == 0:
         # Уничтожение существующих пуль, повышение скорости и создание нового флота
         bullets.empty()
         # Увеличение уровня
         stats.level += 1
-        sb.prep_level()
+        hud.prep_level()
         game_settings.increase_speed()
         create_fleet()
 
@@ -241,7 +241,7 @@ def ship_hit():
     if stats.ships_left > 0:
         # Уменьшение ships_left
         stats.ships_left -= 1
-        sb.prep_ships()
+        hud.prep_ships()
 
         # Очистка спсика пришельцев и пуль
         aliens.empty()
@@ -269,4 +269,4 @@ def check_high_score():
     """проверяет, появился ли новый рекорд"""
     if stats.score > stats.high_score:
         stats.high_score = stats.score
-        sb.prep_high_score()
+        hud.prep_high_score()
