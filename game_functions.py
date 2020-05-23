@@ -104,6 +104,7 @@ def check_play_button(mouse_x, mouse_y):
         # Сброс игровой статистики
         stats.reset_stats()
         sb.prep_score()
+        sb.prep_level()
         stats.game_active = True
         # Очистка списков пришельцев и пуль
         aliens.empty()
@@ -156,6 +157,9 @@ def check_bullet_alien_collisions():
     if len(aliens) == 0:
         # Уничтожение существующих пуль, повышение скорости и создание нового флота
         bullets.empty()
+        # Увеличение уровня
+        stats.level += 1
+        sb.prep_level()
         game_settings.increase_speed()
         create_fleet()
 
