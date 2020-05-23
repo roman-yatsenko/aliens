@@ -105,6 +105,7 @@ def check_play_button(mouse_x, mouse_y):
         stats.reset_stats()
         sb.prep_score()
         sb.prep_level()
+        sb.prep_ships()
         stats.game_active = True
         # Очистка списков пришельцев и пуль
         aliens.empty()
@@ -238,7 +239,8 @@ def ship_hit():
     if stats.ships_left > 0:
         # Уменьшение ships_left
         stats.ships_left -= 1
-
+        sb.prep_ships()
+        
         # Очистка спсика пришельцев и пуль
         aliens.empty()
         bullets.empty()
